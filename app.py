@@ -4,11 +4,11 @@ import numpy as np
 
 app = Flask(__name__)
 
-# Load the trained model and scaler
-with open('model.pkl', 'rb') as model_file:
+# Load the trained model and scaler using your exact file names
+with open('model (1).pkl', 'rb') as model_file:
     model = pickle.load(model_file)
 
-with open('scaler.pkl', 'rb') as scaler_file:
+with open('scaler (1).pkl', 'rb') as scaler_file:
     scaler = pickle.load(scaler_file)
 
 @app.route('/predict', methods=['POST'])
@@ -18,7 +18,6 @@ def predict():
         data = request.get_json()
         
         # Extract features (Expecting a list of 4 numbers)
-        # Example input: {"features": [5.1, 3.5, 1.4, 0.2]}
         features = np.array(data['features']).reshape(1, -1)
         
         # Scale the incoming features using the loaded scaler
